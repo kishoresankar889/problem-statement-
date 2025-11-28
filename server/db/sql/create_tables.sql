@@ -1,0 +1,33 @@
+-- create_tables.sql
+-- Creates the database and tables used by the app.
+
+CREATE DATABASE IF NOT EXISTS `jagan` DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;
+USE `jagan`;
+
+-- Users table
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `email` VARCHAR(255) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL,
+  `is_admin` TINYINT(1) NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Products table
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL DEFAULT 0,
+  `img` VARCHAR(1024),
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Orders table
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `user_email` VARCHAR(255),
+  `items` JSON,
+  `total` DECIMAL(10,2) DEFAULT 0,
+  `notified` TINYINT(1) NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

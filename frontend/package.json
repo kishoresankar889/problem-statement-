@@ -1,0 +1,10 @@
+{
+  "name": "frontend-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cd UI && npm run dev",
+    "dev": "cd UI && npm run dev",
+    "install-ui": "cd UI && npm install"
+  }
+}
